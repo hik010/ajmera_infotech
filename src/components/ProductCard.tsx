@@ -1,12 +1,14 @@
 import { Card, CardContent, Typography } from '@mui/material';
 
 type Props = {
+  key: string;
   data: any;
+  handleClick: (product: {}) => void;
 };
 
-function ProductCard({ data }: Props) {
+function ProductCard({ data, handleClick }: Props) {
   return (
-    <Card sx={{ overflow: 'visible' }}>
+    <Card sx={{ overflow: 'visible' }} onClick={() => handleClick(data)}>
       <CardContent>
         <Typography variant="h5" component="div">
           {data.title}

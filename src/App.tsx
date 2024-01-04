@@ -4,10 +4,12 @@ import { Grid } from '@mui/material';
 
 import './App.css';
 import ProductCard from './components/ProductCard';
+import SelectedProduct from './components/SelectedProduct';
 
 function App() {
   // State to store the fetched product data
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState({});
 
   const fetchAllProducts = async () => {
     try {
@@ -16,6 +18,10 @@ function App() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const clickProduct = (product: {}) => {
+    setSelectedProduct(product);
   };
 
   // Call fetchAllProducts when component mounts
@@ -36,17 +42,17 @@ function App() {
         }}
         className="master-view"
       >
-        {products.map((product: { title: string }) => (
-          <ProductCard data={product} />
+        {products.map((product: { title: string; id: string }) => (
+          <ProductCard
+            data={product}
+            handleClick={clickProduct}
+            key={product.id}
+          />
         ))}
       </Grid>
-      <Grid item xs={8} justifyContent="center">
-        <div className="detail-view">Detail view</div>
+      <Grid item xs={8} justifyContent="center" className="detail-view">
+        {selectedProduct && <SelectedProduct data={selectedProduct} />}
       </Grid>
-      {/* <Box sx={{ display: 'flex' }} className="product-list">
-        products
-      </Box>
-      <div className="detail-view">Detail view</div> */}
     </Grid>
   );
 }
