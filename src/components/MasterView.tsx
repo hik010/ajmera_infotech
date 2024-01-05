@@ -1,7 +1,8 @@
-import { Grid } from '@mui/material';
-import ProductCard from './ProductCard';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+
+import ProductCard from './ProductCard';
 
 type Props = {
   clickProduct: (product: {}) => void;
@@ -26,14 +27,16 @@ function MasterView({ clickProduct }: Props) {
   }, []);
 
   return (
-    <Grid
-      item
+    <Grid2
       xs={4}
       sx={{
         display: 'flex',
         flexDirection: 'column',
         height: 'inherit',
-        overflow: 'scroll',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        padding: '3.2rem',
+        rowGap: '1.6rem',
       }}
       className="master-view"
     >
@@ -44,7 +47,7 @@ function MasterView({ clickProduct }: Props) {
           key={product.id}
         />
       ))}
-    </Grid>
+    </Grid2>
   );
 }
 
