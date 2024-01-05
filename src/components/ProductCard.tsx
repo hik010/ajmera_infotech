@@ -30,23 +30,33 @@ function ProductCard({ data, handleClick }: Props) {
             borderRadius: '0.8rem',
           }}
         />
-        <Box display="flex" flexDirection="column">
-          <Typography variant="purple">{capitalize(data.category)}</Typography>
-          <Typography variant="title">{data.title}</Typography>
-          <Typography
-            component="div"
-            sx={{
-              mb: 1.5,
-              height: '2.4rem',
-              overflow: 'hidden',
-              display: 'block',
-            }}
-            variant="description"
-            color="text.secondary"
-          >
-            {data.description}
-          </Typography>
-          <Typography variant="price">{`$${data.price}`}</Typography>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-around"
+        >
+          <div>
+            <Typography variant="purple" component="div">
+              {capitalize(data.category)}
+            </Typography>
+            <Typography variant="title">{data.title}</Typography>
+            <Typography
+              component="div"
+              sx={{
+                mb: 1.5,
+                height: '2.4rem',
+                overflow: 'hidden',
+                display: 'block',
+              }}
+              variant="description"
+              color="text.secondary"
+            >
+              {data.description}
+            </Typography>
+          </div>
+          <div>
+            <Typography variant="price">{`$${data.price}`}</Typography>
+          </div>
         </Box>
       </CardContent>
     </Card>
