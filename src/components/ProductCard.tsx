@@ -18,6 +18,9 @@ function ProductCard({ data, handleClick, selected }: Props) {
         border: '1px solid ',
         borderColor: selected ? '#B692F6' : '#EAECF0',
         boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
+        '&:hover': {
+          backgroundColor: '#f8f8f8',
+        },
       }}
       onClick={() => handleClick(data.id)}
     >

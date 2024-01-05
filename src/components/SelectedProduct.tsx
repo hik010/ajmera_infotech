@@ -20,10 +20,10 @@ function SelectedProduct({ data, handleClickBackArrow }: Props) {
       <Box
         sx={{
           background: `no-repeat center url(${data.image})`,
-          backgroundSize: {xs: '70%', sm: '40%'},
+          backgroundSize: {xs: '70%', sm: '35%'},
           backgroundColor: '#F4F6FA',
           backgroundBlendMode: 'multiply',
-          minHeight: { xs: '50vh', md: '70vh' },
+          minHeight: { xs: '50vh', md: '65vh' },
           minWidth: { xs: 100, md: 128 },
           borderRadius: '0.8rem',
         }}
@@ -55,7 +55,6 @@ function SelectedProduct({ data, handleClickBackArrow }: Props) {
           component="div"
           sx={{
             mb: 1.5,
-            height: '2.4rem',
             display: 'block',
           }}
           variant="description"
