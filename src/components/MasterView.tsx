@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 import ProductCard from './ProductCard';
 import { Product } from '../types';
+import { useQuery } from 'react-query';
+import { fetchAllProducts } from '../helperFunctions';
 
 type Props = {
   selectedProductId?: number;
@@ -11,22 +11,15 @@ type Props = {
 };
 
 function MasterView({ clickProduct, selectedProductId }: Props) {
-  // State to store the fetched product data
-  const [products, setProducts] = useState([]);
+  // get product data using react-query
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useQuery('productsData', fetchAllProducts);
 
-  const fetchAllProducts = async () => {
-    try {
-      const response = await axios.get('https://fakestoreapi.com/products/');
-      setProducts(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  // Call fetchAllProducts when component mounts
-  useEffect(() => {
-    fetchAllProducts();
-  }, []);
+  if (isLoading) return <div>Fetching product info...</div>;
+  if (error) return <div>Error retrieving data</div>;
 
   return (
     <Grid2
