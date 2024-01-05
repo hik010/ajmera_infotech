@@ -9,6 +9,12 @@ A couple enhancements were made:
 
 Please see video recording [here](https://www.loom.com/share/1bba0b58c1d5445e8793265832b021f4?sid=d4ce13e8-554b-40c7-9141-c68f64624b9f)
 
+![desktop-master](image.png)
+![desktop-detail](image-1.png)
+
+![mobile-master](image-2.png)
+![mobile-detail](image-3.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
