@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
+import { capitalize } from '../helperFunctions';
 
 type Props = {
   key: string;
@@ -30,7 +31,7 @@ function ProductCard({ data, handleClick }: Props) {
           }}
         />
         <Box display="flex" flexDirection="column">
-          <Typography variant="purple">{data.category}</Typography>
+          <Typography variant="purple">{capitalize(data.category)}</Typography>
           <Typography variant="title">{data.title}</Typography>
           <Typography
             component="div"

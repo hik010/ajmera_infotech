@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import { capitalize } from '../helperFunctions';
 
 type Props = {
   data: any;
@@ -26,7 +27,7 @@ function SelectedProduct({ data }: Props) {
       />
       <Box>
         <Typography component="div" variant="purple">
-          {data.category}
+          {capitalize(data.category)}
         </Typography>
         <Typography component="div" variant="title">
           {data.title}
