@@ -1,10 +1,12 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Box, Typography } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 import SelectedProduct from './SelectedProduct';
 
 type Props = {
-  selectedProduct: any;
+  productId: any;
 };
 
 const EmptyView = () => {
@@ -36,19 +38,37 @@ const EmptyView = () => {
   );
 };
 
-function DetailView({ selectedProduct }: Props) {
+function DetailView({ productId }: Props) {
+  const [product, setProduct] = useState({});
+
+  const fetchSingleProduct = async () => {
+    try {
+      const response = await axios.get(
+        `https://fakestoreapi.com/products/${productId}`
+      );
+      setProduct(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  // Call fetchSingleProduct when product id changes
+  useEffect(() => {
+    if (productId) fetchSingleProduct();
+  }, [productId]);
+
   return (
     <Grid2
       xs={8}
       className="detail-view"
       display="flex"
       justifyContent="center"
-
     >
-      {!Object.keys(selectedProduct).length && <EmptyView />}
-      {Object.keys(selectedProduct).length && (
-        <SelectedProduct data={selectedProduct} />
-      )}
+      {/* show empty view when no product is selected */}
+      {!productId && <EmptyView />}
+
+      {/* once product detail is fetched */}
+      {Object.keys(product).length && <SelectedProduct data={product} />}
     </Grid2>
   );
 }

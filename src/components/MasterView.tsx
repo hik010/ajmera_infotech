@@ -5,7 +5,7 @@ import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import ProductCard from './ProductCard';
 
 type Props = {
-  clickProduct: (product: {}) => void;
+  clickProduct: (id: string) => void;
 };
 
 function MasterView({ clickProduct }: Props) {

@@ -3,7 +3,7 @@ import { Box, Card, CardContent, Typography } from '@mui/material';
 type Props = {
   key: string;
   data: any;
-  handleClick: (product: {}) => void;
+  handleClick: (id: string) => void;
 };
 
 function ProductCard({ data, handleClick }: Props) {
@@ -16,7 +16,7 @@ function ProductCard({ data, handleClick }: Props) {
         border: '1px solid #EAECF0',
         boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
       }}
-      onClick={() => handleClick(data)}
+      onClick={() => handleClick(data.id)}
     >
       <CardContent sx={{ display: 'flex', columnGap: '2rem' }}>
         <Box
@@ -45,7 +45,6 @@ function ProductCard({ data, handleClick }: Props) {
           >
             {data.description}
           </Typography>
-
           <Typography variant="price">{`$${data.price}`}</Typography>
         </Box>
       </CardContent>
