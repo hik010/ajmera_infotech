@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Rating, Typography } from '@mui/material';
 import { capitalize } from '../helperFunctions';
 
 type Props = {
@@ -29,7 +29,7 @@ function SelectedProduct({ data }: Props) {
         <Typography component="div" variant="purple">
           {capitalize(data.category)}
         </Typography>
-        <Typography component="div" variant="title">
+        <Typography component="div" variant="title" mt="1.2rem">
           {data.title}
         </Typography>
         <Typography
@@ -47,9 +47,21 @@ function SelectedProduct({ data }: Props) {
         </Typography>
       </Box>
 
-      <Box>
-        <Typography>{data.rating.rate}</Typography>
-        <Typography>{`${data.rating.count} reviews`}</Typography>
+      <Box display="flex" columnGap="0.8rem" alignItems="center">
+        <Rating
+          name="read-only"
+          value={data.rating.rate}
+          readOnly
+          size="large"
+        />
+        <Typography fontSize="1.6rem" fontWeight="medium" color="#101828">
+          {data.rating.rate}
+        </Typography>
+        <Typography
+          fontSize="1.6rem"
+          fontWeight="light"
+          color="#475467"
+        >{`${data.rating.count} reviews`}</Typography>
       </Box>
       <Typography variant="price">{`$${data.price}`}</Typography>
     </Box>
