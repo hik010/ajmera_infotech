@@ -15,14 +15,15 @@ function SelectedProduct({ data, handleClickBackArrow }: Props) {
       flexDirection="column"
       justifyContent="start"
       rowGap="3.2rem"
-      p="3.2rem"
+      p={{ xs: '1.6rem', sm: '3.2rem' }}
     >
       <Box
         sx={{
-          background: `no-repeat center/30% url(${data.image})`,
+          background: `no-repeat center url(${data.image})`,
+          backgroundSize: {xs: '70%', sm: '40%'},
           backgroundColor: '#F4F6FA',
           backgroundBlendMode: 'multiply',
-          minHeight: { xs: 115, md: '70vh' },
+          minHeight: { xs: '50vh', md: '70vh' },
           minWidth: { xs: 100, md: 128 },
           borderRadius: '0.8rem',
         }}
@@ -37,6 +38,7 @@ function SelectedProduct({ data, handleClickBackArrow }: Props) {
             width: '2rem',
             height: '2rem',
             padding: '1.2rem',
+            margin: '0.8rem',
             display: { xs: 'block', sm: 'none' },
           }}
           onClick={handleClickBackArrow}
@@ -54,7 +56,6 @@ function SelectedProduct({ data, handleClickBackArrow }: Props) {
           sx={{
             mb: 1.5,
             height: '2.4rem',
-            overflow: 'hidden',
             display: 'block',
           }}
           variant="description"
