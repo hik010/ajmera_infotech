@@ -3,6 +3,7 @@ import axios from 'axios';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 import ProductCard from './ProductCard';
+import { Product } from '../types';
 
 type Props = {
   selectedProductId?: number;
@@ -42,11 +43,12 @@ function MasterView({ clickProduct, selectedProductId }: Props) {
       }}
       className="master-view"
     >
-      {products.map((product: { title: string; id: string }) => (
+      {products.map((product: Product) => (
         <ProductCard
           data={product}
           handleClick={clickProduct}
           key={product.id}
+          selected={selectedProductId === product.id}
         />
       ))}
     </Grid2>
