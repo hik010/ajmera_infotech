@@ -4,11 +4,10 @@ import { capitalize } from '../helperFunctions';
 type Props = {
   key: string;
   data: any;
-  handleClick: (id: string) => void;
+  handleClick: (id: number) => void;
 };
 
 function ProductCard({ data, handleClick }: Props) {
-  console.info(data);
   return (
     <Card
       sx={{

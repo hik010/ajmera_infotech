@@ -8,16 +8,26 @@ import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 
 function App() {
-  const [selectedProductId, setSelectedProductId] = useState('');
+  const [selectedProductId, setSelectedProductId] = useState<
+    number | undefined
+  >(undefined);
 
-  const clickProduct = (id: string) => {
+  const clickProduct = (id: number) => {
     setSelectedProductId(id);
   };
+
+  const deselectProduct = () => {
+    setSelectedProductId(undefined);
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Grid2 container spacing={2} sx={{ height: '95vh' }}>
-        <MasterView clickProduct={clickProduct} />
-        <DetailView productId={selectedProductId} />
+      <Grid2 container spacing={2} sx={{ height: '100vh', margin: 0 }}>
+        <MasterView
+          clickProduct={clickProduct}
+          selectedProductId={selectedProductId}
+        />
+        <DetailView productId={selectedProductId} deselectProduct={deselectProduct}/>
       </Grid2>
     </ThemeProvider>
   );

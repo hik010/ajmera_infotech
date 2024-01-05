@@ -7,6 +7,7 @@ import SelectedProduct from './SelectedProduct';
 
 type Props = {
   productId: any;
+  deselectProduct: () => void;
 };
 
 const EmptyView = () => {
@@ -38,7 +39,7 @@ const EmptyView = () => {
   );
 };
 
-function DetailView({ productId }: Props) {
+function DetailView({ productId, deselectProduct }: Props) {
   const [product, setProduct] = useState({});
 
   const fetchSingleProduct = async () => {
@@ -59,16 +60,21 @@ function DetailView({ productId }: Props) {
 
   return (
     <Grid2
-      xs={8}
       className="detail-view"
-      display="flex"
+      xs={12}
+      sm={8}
+      sx={{ display: { xs: productId ? 'flex' : 'none', sm: 'flex' } }}
       justifyContent="center"
     >
       {/* show empty view when no product is selected */}
       {!productId && <EmptyView />}
-
       {/* once product detail is fetched */}
-      {Object.keys(product).length && <SelectedProduct data={product} />}
+      {Object.keys(product).length > 0 && (
+        <SelectedProduct
+          data={product}
+          handleClickBackArrow={deselectProduct}
+        />
+      )}
     </Grid2>
   );
 }

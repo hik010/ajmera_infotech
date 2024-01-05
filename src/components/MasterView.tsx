@@ -5,10 +5,11 @@ import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import ProductCard from './ProductCard';
 
 type Props = {
-  clickProduct: (id: string) => void;
+  selectedProductId?: number;
+  clickProduct: (id: number) => void;
 };
 
-function MasterView({ clickProduct }: Props) {
+function MasterView({ clickProduct, selectedProductId }: Props) {
   // State to store the fetched product data
   const [products, setProducts] = useState([]);
 
@@ -28,9 +29,10 @@ function MasterView({ clickProduct }: Props) {
 
   return (
     <Grid2
-      xs={4}
+      xs={12}
+      sm={4}
       sx={{
-        display: 'flex',
+        display: { xs: selectedProductId ? 'none' : 'flex', sm: 'flex' },
         flexDirection: 'column',
         height: 'inherit',
         overflowY: 'scroll',

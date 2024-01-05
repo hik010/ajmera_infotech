@@ -1,11 +1,13 @@
 import { Box, Rating, Typography } from '@mui/material';
 import { capitalize } from '../helperFunctions';
+import arrowLeft from '../arrow-left.svg';
 
 type Props = {
   data: any;
+  handleClickBackArrow: () => void;
 };
 
-function SelectedProduct({ data }: Props) {
+function SelectedProduct({ data, handleClickBackArrow }: Props) {
   return (
     <Box
       display="flex"
@@ -24,7 +26,22 @@ function SelectedProduct({ data }: Props) {
           minWidth: { xs: 100, md: 128 },
           borderRadius: '0.8rem',
         }}
-      />
+      >
+        <Box
+          component="img"
+          src={arrowLeft}
+          sx={{
+            borderRadius: '99.9rem',
+            border: '1px solid #D0D5DD',
+            background: '#FFF',
+            width: '2rem',
+            height: '2rem',
+            padding: '1.2rem',
+            display: { xs: 'block', sm: 'none' },
+          }}
+          onClick={handleClickBackArrow}
+        />
+      </Box>
       <Box>
         <Typography component="div" variant="purple">
           {capitalize(data.category)}
