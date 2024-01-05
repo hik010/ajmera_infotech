@@ -1,6 +1,6 @@
 import { Box, Rating, Typography } from '@mui/material';
 import { capitalize } from '../helperFunctions';
-import arrowLeft from '../arrow-left.svg';
+import backArrow from '../back-arrow.svg';
 
 type Props = {
   data: any;
@@ -29,7 +29,7 @@ function SelectedProduct({ data, handleClickBackArrow }: Props) {
       >
         <Box
           component="img"
-          src={arrowLeft}
+          src={backArrow}
           sx={{
             borderRadius: '99.9rem',
             border: '1px solid #D0D5DD',
