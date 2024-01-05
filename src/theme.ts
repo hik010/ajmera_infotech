@@ -29,6 +29,7 @@ declare module '@mui/material/Typography' {
 
 const theme = createTheme({
   typography: {
+    fontFamily: 'Inter',
     purple: {
       fontSize: '1.4rem',
       fontStyle: 'normal',

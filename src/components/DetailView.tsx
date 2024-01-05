@@ -43,9 +43,12 @@ function DetailView({ selectedProduct }: Props) {
       className="detail-view"
       display="flex"
       justifyContent="center"
+
     >
       {!Object.keys(selectedProduct).length && <EmptyView />}
-      {selectedProduct && <SelectedProduct data={selectedProduct} />}
+      {Object.keys(selectedProduct).length && (
+        <SelectedProduct data={selectedProduct} />
+      )}
     </Grid2>
   );
 }
