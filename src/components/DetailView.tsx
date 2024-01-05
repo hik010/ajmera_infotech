@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Box, Typography } from '@mui/material';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import { Box, CircularProgress, Typography } from '@mui/material';
 
 import SelectedProduct from './SelectedProduct';
+import { fetchSingleProduct } from '../helperFunctions';
+import { useQuery } from 'react-query';
 
 type Props = {
   productId: any;
@@ -40,42 +39,32 @@ const EmptyView = () => {
 };
 
 function DetailView({ productId, deselectProduct }: Props) {
-  const [product, setProduct] = useState({});
+  const {
+    data: product,
+    error,
+    isLoading,
+  } = useQuery(['detailData', productId], () => fetchSingleProduct(productId));
 
-  const fetchSingleProduct = async () => {
-    try {
-      const response = await axios.get(
-        `https://fakestoreapi.com/products/${productId}`
-      );
-      setProduct(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+  /* show empty view when no product is selected */
+  if (!productId) return <EmptyView />;
 
-  // Call fetchSingleProduct when product id changes
-  useEffect(() => {
-    if (productId) fetchSingleProduct();
-  }, [productId]);
+  if (isLoading)
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <CircularProgress />
+      </Box>
+    );
+  if (error) return <div>An error occurred.</div>;
 
   return (
-    <Grid2
-      className="detail-view"
-      xs={12}
-      sm={8}
-      sx={{ display: { xs: productId ? 'flex' : 'none', sm: 'flex' } }}
-      justifyContent="center"
-    >
-      {/* show empty view when no product is selected */}
-      {!productId && <EmptyView />}
-      {/* once product detail is fetched */}
+    <>
       {Object.keys(product).length > 0 && (
         <SelectedProduct
           data={product}
           handleClickBackArrow={deselectProduct}
         />
       )}
-    </Grid2>
+    </>
   );
 }
 

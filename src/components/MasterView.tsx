@@ -4,6 +4,7 @@ import ProductCard from './ProductCard';
 import { Product } from '../types';
 import { useQuery } from 'react-query';
 import { fetchAllProducts } from '../helperFunctions';
+import { Box, CircularProgress } from '@mui/material';
 
 type Props = {
   selectedProductId?: number;
@@ -18,24 +19,16 @@ function MasterView({ clickProduct, selectedProductId }: Props) {
     isLoading,
   } = useQuery('productsData', fetchAllProducts);
 
-  if (isLoading) return <div>Fetching product info...</div>;
+  if (isLoading)
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Box>
+    );
   if (error) return <div>Error retrieving data</div>;
 
   return (
-    <Grid2
-      xs={12}
-      sm={4}
-      sx={{
-        display: { xs: selectedProductId ? 'none' : 'flex', sm: 'flex' },
-        flexDirection: 'column',
-        height: 'inherit',
-        overflowY: 'scroll',
-        overflowX: 'hidden',
-        padding: '3.2rem',
-        rowGap: '1.6rem',
-      }}
-      className="master-view"
-    >
+    <>
       {products.map((product: Product) => (
         <ProductCard
           data={product}
@@ -44,7 +37,7 @@ function MasterView({ clickProduct, selectedProductId }: Props) {
           selected={selectedProductId === product.id}
         />
       ))}
-    </Grid2>
+    </>
   );
 }
 

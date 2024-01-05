@@ -23,11 +23,41 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Grid2 container spacing={2} sx={{ height: '100vh', margin: 0 }}>
-        <MasterView
-          clickProduct={clickProduct}
-          selectedProductId={selectedProductId}
-        />
-        <DetailView productId={selectedProductId} deselectProduct={deselectProduct}/>
+        <Grid2
+          xs={12}
+          sm={4}
+          sx={{
+            display: { xs: selectedProductId ? 'none' : 'flex', sm: 'flex' },
+            flexDirection: 'column',
+            height: 'inherit',
+            overflowY: 'scroll',
+            overflowX: 'hidden',
+            padding: '3.2rem',
+            rowGap: '1.6rem',
+          }}
+          className="master-view"
+        >
+          <MasterView
+            clickProduct={clickProduct}
+            selectedProductId={selectedProductId}
+          />
+        </Grid2>
+
+        <Grid2
+          className="detail-view"
+          xs={12}
+          sm={8}
+          sx={{
+            // hide detail view if no product is selected in mobile view
+            display: { xs: selectedProductId ? 'flex' : 'none', sm: 'flex' },
+          }}
+          justifyContent="center"
+        >
+          <DetailView
+            productId={selectedProductId}
+            deselectProduct={deselectProduct}
+          />
+        </Grid2>
       </Grid2>
     </ThemeProvider>
   );
